@@ -21,8 +21,7 @@
   },
   "files": [
     "out",
-    "content.js",
-    "background.js"
+    "index.js"
   ],
   "devDependencies": {
     "@types/chrome": "^0.0.146",

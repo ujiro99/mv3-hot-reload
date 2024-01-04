@@ -3,6 +3,20 @@ export enum Message {
   Reload = 'reload',
 }
 
-export const isDev = process.env.NODE_ENV === 'development'
+export let isDev = true
 
-export const PORT = process.env.MV3_HOT_RELOAD_PORT ?? 9012
+export let PORT = 9012
+
+type Config = {
+  isDev: boolean
+  PORT: number
+}
+
+export const setConfig = (conf: Config) => {
+  if (conf.isDev != null) {
+    isDev = conf.isDev
+  }
+  if (conf.PORT != null) {
+    PORT = conf.PORT
+  }
+}
