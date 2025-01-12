@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 
 import chokidar from 'chokidar'
-import WebSocket = require('ws')
+import WebSocket from 'ws'
 import debounce from 'lodash/debounce'
 import path from 'path'
 import { Message } from '../src/utils'
@@ -43,14 +43,14 @@ wss.on('close', () => {
   console.log('hot reload server closed.')
 })
 
-wss.on('connection', (ws) => {
+wss.on('connection', (ws: WebSocket) => {
   const watcher = chokidar.watch(directoryPath, {
     ignoreInitial: true,
   })
 
   watcher.on(
     'all',
-    debounce((_, path) => {
+    debounce((_: any, path: string) => {
       if (!excludePaths.includes(path)) {
         if (!quiet) {
           console.log(`File change detected. Path: ${path}`)
@@ -60,7 +60,7 @@ wss.on('connection', (ws) => {
     }, 500),
   )
 
-  ws.on('close', () => {
+  wss.on('close', () => {
     watcher.close()
   })
 })
